@@ -1,25 +1,25 @@
 {
-  "name": "summernote-cleaner",
+  "name": "summernote-on-paste",
   "version": "1.0.0",
-  "description": "A plugin for the Summernote WYSIWYG editor.",
-  "main": "summernote-cleaner.js",
+  "description": "A plugin for the Summernote WYSIWYG editor that acts on pasted text.",
+  "main": "summernote-on-past.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DiemenDesign/summernote-cleaner.git"
+    "url": "git+https://github.com/malloryCode/summernote-on-paste.git"
   },
   "keywords": [
     "summernote"
   ],
-  "author": "DiemenDesign",
+  "author": "Steve Mallory",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DiemenDesign/summernote-cleaner/issues"
+    "url": "https://github.com/malloryCode/summernote-on-paste/issues"
   },
-  "homepage": "https://github.com/DiemenDesign/summernote-cleaner#readme",
+  "homepage": "https://github.com/malloryCode/summernote-on-paste#readme",
   "dependencies": {
-    "summernote": "^0.8.2"
+    "summernote": "^0.8.12"
   }
 }
