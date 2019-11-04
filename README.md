@@ -13,8 +13,6 @@ I've also dropped special IE support and I'm using ES6.
 
 I also added a new feature, which is to wrap non-empty text nodes in a p tag. Depending on where you are copying content from, the paragraphs will simply be separated by newlines. These will be transformed into paragraphs if they are not within an element.
 
-See a [working example](http://htmlpreview.github.io/?https://github.com/malloryCode/summernote-ext-on-paste/blob/master/example/index.html).
-
 ### Installation
 
 #### 1. Include JS
