@@ -38,7 +38,7 @@
                  * everything else will be removed - however,
                  * optionally children of removed elements will
                  * be processed and potentially included, separately.
-                 * to get optional behavior set allowChildren to true*/
+                 * to get optional behavior set allowChildren to true */
                 allowedTags: [
                     "h1",
                     "h2",
@@ -73,9 +73,7 @@
                  * <aside> is not allowed, you can keep the actual code
                  * within the aside tag by adding 'aside' to this array.
                  */
-                allowChildren: [
-                    "aside"
-                ],
+                allowChildren: [],
                 /* when processing text nodes, remove extaneous white
                  * space and new lines
                  */
