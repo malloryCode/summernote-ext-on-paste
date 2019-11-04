@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Summernote On Paste Extension Example</title>
+
+    <!--   include libraries(jQuery, bootstrap) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.min.js"></script>
+
+    <!-- include plugins -->
+    <script src="../src/summernote-ext-on-paste.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Demo of On Paste extention</h2>
+                <button onclick="copyToClipboard();">Copy below example code</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <pre style="line-height:1.1;">
+                <code>
+                <small>
+    With editor options
+    $("#editor").summernote(
+    {
+        onPaste: {
+            allowChildren: [
+                "script"
+            ]
+        }
+    });</small>
+                    </code> 
+                </pre>
+            </div>
+            <div class="col-md-9">
+                <pre>
+                <code>
+    &lt;h3 class="some-class" style="border:1px solid black;"&gt;What is Lorem Ipsum?&lt;/h3&gt;
+    &lt;p style="width:75%;color:red;"&gt;
+        Lorem Ipsum sit amet.
+    &lt;/p&gt;
+    &lt;script&gt;
+        var variable = "Only the text of this script should be pasted.";
+    &lt;/script&gt;
+                    </code>
+                </pre>
+                <div id="example1" style="display:none;">
+                    <h3 class="some-class" style="border:1px solid black;">What is Lorem Ipsum?</h3>
+                    <p style="width:75%;color:red;">
+                        Lorem Ipsum sit amet.
+                    </p>
+                    <script>var variable = "Only the text of this script should be pasted."</script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="editor"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function copyToClipboard() {
+            var text = $("#example1").html();
+            if (window.clipboardData && window.clipboardData.setData) {
+                // Internet Explorer-specific code path to prevent textarea being shown while dialog is visible.
+                return clipboardData.setData("Text", text);
+            }
+            else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+                var textarea = document.createElement("textarea");
+                textarea.textContent = text;
+                textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+                }
+                catch (ex) {
+                    console.warn("Copy to clipboard failed.", ex);
+                    return false;
+                }
+                finally {
+                    document.body.removeChild(textarea);
+                }
+            }
+        }
+        $(document).ready(function () {
+            $("#editor").summernote(
+                {
+                    height: 200,
+                    toolbar: [
+                        ['img', ['picture']],
+                        ['style', ['style', 'clear']],
+                        ['fontstyle', ['bold', 'italic', 'ul', 'ol', 'link', 'paragraph']],
+                        ['fontstyleextra', ['strikethrough', 'underline', 'hr', 'superscript', 'subscript']],
+                        ['extra', ['video', 'table']],
+                        ['misc', ['codeview', 'help']]
+                    ],
+                    callbacks: {
+                        onFocus: function (contents, $editable) {
+                            if (contents.currentTarget.innerHTML === "<p><br></p>") {
+                                contents.currentTarget.innerHTML = '';
+                            }
+                        }
+                    },
+                    onPaste: {
+                        allowChildren: [
+                            "script"
+                        ]
+                    }
+                });
+        });
+    </script>
+</body>
+
+</html>
